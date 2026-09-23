@@ -7,6 +7,8 @@ import viteLogo from './../assets/vite.svg'
 import ResponsiveAppBar from "../components/AppBar/AppBar";
 import Home from "../pages/Home/Home";
 
+import ColorRule from "../components/ProUI/ColorRule";
+
 function App() {
   const [count, setCount] = useState(0)
 
@@ -22,6 +24,8 @@ function App() {
         <li>HealthMetrics</li>
         <li>GlobalRisk Monitor</li>
       </ul>
+
+      <ColorRule />
       {/* <section id="center">
         <div className="hero">
           <img src={heroImg} className="base" width="170" height="179" alt="" />
