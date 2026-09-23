@@ -4,7 +4,7 @@ import reactLogo from './../assets/react.svg'
 import viteLogo from './../assets/vite.svg'
 
 
-// import AppBar
+import ResponsiveAppBar from "../components/AppBar/AppBar";
 import Home from "../pages/Home/Home";
 
 function App() {
@@ -12,7 +12,8 @@ function App() {
 
   return (
     <>
-    <Home/>
+      <ResponsiveAppBar />
+      <Home />
       {/* <section id="center">
         <div className="hero">
           <img src={heroImg} className="base" width="170" height="179" alt="" />
