@@ -1,7 +1,9 @@
+import Overview from "./Overview";
+
 const ClimateScope = () => {
     return (
-        <>ClimateScope</>
+        <><Overview/></>
     )
 }
 
-export default ClimateScope
+export default ClimateScope;
