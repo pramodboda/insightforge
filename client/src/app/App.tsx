@@ -14,6 +14,14 @@ function App() {
     <>
       <ResponsiveAppBar />
       <Home />
+      <ul>
+        <li>ClimateScope</li>
+        <li>WorkforceHub</li>
+        <li>FinanceLens</li>
+        <li>CommercePulse</li>
+        <li>HealthMetrics</li>
+        <li>GlobalRisk Monitor</li>
+      </ul>
       {/* <section id="center">
         <div className="hero">
           <img src={heroImg} className="base" width="170" height="179" alt="" />
