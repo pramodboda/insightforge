@@ -23,6 +23,7 @@ function App() {
         <li>CommercePulse</li>
         <li>HealthMetrics</li>
         <li>GlobalRisk Monitor</li>
+        <li>Developer Analytics</li>
       </ul>
 
       <ColorRule />
