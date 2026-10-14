@@ -3,6 +3,6 @@ import SectionTitle from "../../components/ProUI/SectionTitle";
 
 export default function RisingSeasAndMeltingIce({ title }) {
     return (<>
-        <SectionTitle title="05 · Rising seas and melting ice" />
+        <SectionTitle caption="05 · OCEAN & CRYOSPHERE" title="Rising seas, melting ice" />
     </>)
 }

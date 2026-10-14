@@ -1,5 +1,9 @@
 import Typography from "@mui/material/Typography"
 
-export default function SectionTitle({ title }) {
-    return (<> <Typography variant="h6">{title}</Typography></>)
+export default function SectionTitle({ caption, title, }) {
+
+    return (<>
+        {caption && <Typography variant="caption">{caption}</Typography>}
+        <Typography variant="h6">{title}</Typography>
+    </>)
 }

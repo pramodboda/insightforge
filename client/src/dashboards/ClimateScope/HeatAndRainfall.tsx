@@ -3,6 +3,6 @@ import SectionTitle from "../../components/ProUI/SectionTitle";
 
 export default function HeatAndRainfall({ title }) {
     return (<>
-        <SectionTitle title="04 · Extreme heat and changing rainfall" />
+        <SectionTitle caption="04 · LIVED IMPACTS" title="Extreme heat and changing rainfall" />
     </>)
 }
