@@ -1,8 +1,8 @@
 import SectionTitle from "../../components/ProUI/SectionTitle";
 
 
-export default function RisingSeasAndMeltingIce({ title }) {
+export default function HeatAndRainfall({ title }) {
     return (<>
-        <SectionTitle title="05 · Rising seas and melting ice" />
+        <SectionTitle title="04 · Extreme heat and changing rainfall" />
     </>)
 }
