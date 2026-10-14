@@ -1,7 +1,7 @@
-import ClimateScope from "../../dashboards/ClimateScope/ClimateScope";
+import ClimateScope from "../../dashboards/ClimateScope/";
 
 const Home = () => {
-    return(<ClimateScope/>)
+    return (<ClimateScope />)
 }
 
 export default Home;

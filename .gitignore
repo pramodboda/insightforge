@@ -15,6 +15,7 @@
 # Dependencies (Node / Python / General)
 # ==========================================
 # Node / JS / TS
+node_modules
 node_modules/
 jspm_packages/
 .pnp
