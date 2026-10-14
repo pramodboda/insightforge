@@ -1,3 +1,7 @@
-export default function EarthVitalSigns() {
-    return (<>01 · Earth's vital signs</>)
+import SectionTitle from "../../components/ProUI/SectionTitle";
+
+export default function EarthVitalSigns({ title }) {
+    return (<>
+        <SectionTitle title="01 · Earth's vital signs" />
+    </>)
 }
