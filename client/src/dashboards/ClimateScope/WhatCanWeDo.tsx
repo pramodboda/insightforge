@@ -1,8 +1,8 @@
 import SectionTitle from "../../components/ProUI/SectionTitle";
 
 
-export default function ClimateOutlook({ title }) {
+export default function WhatCanWeDo({ title }) {
     return (<>
-        <SectionTitle title="06 · Climate outlook: past, present and future" />
+        <SectionTitle title="07 · What can we do?" />
     </>)
 }
