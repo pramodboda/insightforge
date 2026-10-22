@@ -14,13 +14,6 @@ app.get("/api/health", (_req, res) => {
 
 app.use("/api/employees", employeeRoutes);
 
-
-/**
- * ---------------------------------------------------------
- * Server configuration
- * ---------------------------------------------------------
- */
-
 const port = Number(process.env.PORT) || 3001;
 
 app.listen(port, () => {

@@ -1,0 +1,7 @@
+{
+    "name": "server",
+    "scripts": {
+        "dev": "tsx watch src/server.ts",
+        "typecheck": "tsc --noEmit"
+    }
+}

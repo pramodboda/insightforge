@@ -1,0 +1,17 @@
+{
+    "name": "insightforge",
+    "private": true,
+    "workspaces": [
+        "client"
+    ],
+    "scripts": {
+        "dev": "concurrently \"npm run dev:client\"",
+        "dev:client": "npm run dev --workspace=client"
+    },
+    "devDependencies": {
+        "concurrently": "^9.2.1"
+    },
+    "dependencies": {
+        "react-icons": "^5.7.0"
+    }
+}
