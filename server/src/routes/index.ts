@@ -5,7 +5,7 @@ import userRoutes from "../features/users/users.routes";
 
 const router = express.Router();
 
-router.use("/users", usersRoutes);
+router.use("/users", userRoutes);
 // router.use("/employees", employeesRoutes);
 
 export default router;
