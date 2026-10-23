@@ -1,3 +1,8 @@
+// server/src/config/db.ts
+// db.ts - Database connection
+
+
+
 import "dotenv/config";
 import { Pool } from "pg";
 
