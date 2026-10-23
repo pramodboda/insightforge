@@ -12,7 +12,7 @@ export async function getEmployees100(
     try{
         const users = await userService.getEmployees100();
 
-        res.status(200).json({data: users});
+        return res.status(200).json({data: users});
     }catch(error:any){
         console.error("Error detching users:",{
             message:"Internal server error",
