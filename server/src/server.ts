@@ -33,8 +33,8 @@ import app from "./app";
 
 const port = Number(process.env.PORT) || 3001;
 
-const startServer = app.listen(port, "0.0.0.0", () =>{
+const startServer = app.listen(port, "0.0.0.0", () => {
   console.log(`API running on port ${port}`);
-})
+});
 
 export default startServer;
