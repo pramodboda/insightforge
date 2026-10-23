@@ -6,6 +6,6 @@ const router = express.Router();
 
 
 
-router.get("/employees100", getEmployees100);
+router.get("/users100", getEmployees100);
 
 export default router;
