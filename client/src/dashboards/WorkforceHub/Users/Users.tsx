@@ -5,7 +5,7 @@ async function getUsers() {
 
     try {
         // const response = await fetch("http://localhost:3001/api/health");
-        const response = await fetch("http://localhost:3001/api/employees100");
+        const response = await fetch("http://localhost:3001/api/users100");
         if (!response.ok) {
             throw new Error(`Response status: ${response.status}`);
         }
