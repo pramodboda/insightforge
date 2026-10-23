@@ -8,7 +8,7 @@ import userRoutes from "../features/users/users.routes";
 
 const router = Router();
 
-router.use("/users100", userRoutes);
+router.use("/users", userRoutes);
 // router.use("/employees", employeesRoutes);
 
 export default router;
