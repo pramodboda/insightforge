@@ -4,7 +4,7 @@ import { pool } from "../../config/db";
 export async function getEmployees100(){
     try {
         const result = await pool.query(
-          "SELECT * FROM employees LIMIT 100"
+          "SELECT * FROM users LIMIT 100"
         );
     
         res.json({
