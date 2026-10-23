@@ -1,24 +1,11 @@
-import { pool } from "../../config/db";
+// import { pool } from "../../config/db";
 
+import { sql } from "../../config/db";
 
-export async function getEmployees100(){
-    try {
-        const result = await pool.query(
-          "SELECT * FROM users LIMIT 100"
-        );
-    
-        res.json({
-          success: true,
-          data: result.rows,
-        });
-      } catch (error) {
-        console.error("Failed to fetch employees:", error);
-    
-        res.status(500).json({
-          success: false,
-          message: "Unable to fetch employees",
-        });
-      }
+export async function getEmployees() {
+  const users = await sql`SELECT * FROM users LIMIT 100`;
+
+  return users;
 }
 
 // export async function createEmployee(input: {

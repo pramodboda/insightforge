@@ -2,8 +2,8 @@ import * as userModel from "./users.model";
 
 
 // Get - 100 employees
-export async function getEmployees100(){
-    return userModel.getEmployees100();
+export async function getEmployees(){
+    return userModel.getEmployees();
 }
 
 // // Create - employee

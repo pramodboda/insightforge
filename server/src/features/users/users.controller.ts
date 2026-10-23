@@ -4,25 +4,23 @@ import type {Request, Response, NextFunction} from "express";
 
 import * as userService from "./users.service";
 
-export async function getEmployees100(
-    _req:Request,
-    res:Response,
+export async function getEmployees(
+    _req: Request,
+    res: Response,
     next: NextFunction
-){
-    try{
-        const users = await userService.getEmployees100();
-
-        return res.status(200).json({data: users});
-    }catch(error:any){
-        console.error("Error detching users:",{
-            message:"Internal server error",
-            error: error?.message || "Unknown error",
-        });
-
-        next(error);
-
+  ) {
+    try {
+      const users = await userService.getEmployees();
+  
+      return res.status(200).json({
+        success: true,
+        data: users,
+      });
+    } catch (error) {
+      console.error("Error fetching users:", error);
+      return next(error);
     }
-}
+  }
 
 // export async function createUser(
 //     req: Request,
