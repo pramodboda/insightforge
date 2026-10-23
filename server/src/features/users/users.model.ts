@@ -1,7 +1,7 @@
 import { pool } from "../../config/db";
 
 
-export function getEmployees100(){
+export async function getEmployees100(){
     try {
         const result = await pool.query(
           "SELECT * FROM employees LIMIT 100"
@@ -19,5 +19,19 @@ export function getEmployees100(){
           message: "Unable to fetch employees",
         });
       }
+}
+
+export async function createEmployee(input: {
+  name: string;
+  email: string;
+}) {
+  const result = await pool.query(
+    `INSERT INTO users (name, email)
+     VALUES ($1, $2)
+     RETURNING id, name, email`,
+    [input.name, input.email]
+  );
+
+  return result.rows[0];
 }
 

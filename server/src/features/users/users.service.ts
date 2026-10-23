@@ -7,7 +7,7 @@ export async function getEmployees100(){
 }
 
 // // Create - employee
-// export async function createUser(input: {
+// export async function createEmployee(input: {
 //     name: string;
 //     email: string;
 //   }) {
@@ -16,5 +16,5 @@ export async function getEmployees100(){
 //     // - check whether email already exists
 //     // - apply business-specific rules
   
-//     return userModel.create(input);
+//     return userModel.createEmployee(input);
 //   }
