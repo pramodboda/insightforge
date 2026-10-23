@@ -5,7 +5,7 @@ import WorkforceHub from "../../dashboards/WorkforceHub/";
 const Home = () => {
     return (
     <>
-        <ClimateScope />
+        {/* <ClimateScope /> */}
         <WorkforceHub />
     </>
     )
