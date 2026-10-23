@@ -1,3 +1,7 @@
+// server/src/server.ts
+// server.ts - Start listening
+
+
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
