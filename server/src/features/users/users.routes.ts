@@ -1,9 +1,9 @@
 import express from "express";
 
-import { fetchEmployees100 } from "./users.controller";
+import { getEmployees100 } from "./users.controller";
 
 const router = express.Router();
 
 
 
-router.get("/employees100", fetchEmployees100);
+router.get("/employees100", getEmployees100);
