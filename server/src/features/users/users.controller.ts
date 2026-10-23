@@ -13,11 +13,13 @@ export async function getEmployees100(
         const users = await userService.getEmployees100();
 
         res.status(200).json({data: users});
-    }catch(err:any){
+    }catch(error:any){
         console.error("Error detching users:",{
             message:"Internal server error",
             error: error?.message || "Unknown error",
         });
+
+        next(error);
 
     }
 }
