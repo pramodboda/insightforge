@@ -1,62 +1,54 @@
-import React, { useEffect } from "react";
-import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
-import MuiDrawer from "@mui/material/Drawer";
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
-import CssBaseline from "@mui/material/CssBaseline";
-import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
+import * as React from 'react';
+import { styled, useTheme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Drawer from '@mui/material/Drawer';
+import CssBaseline from '@mui/material/CssBaseline';
+import MuiAppBar, { type AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import List from '@mui/material/List';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MailIcon from '@mui/icons-material/Mail';
 
-import { TfiLayoutGrid3 } from "react-icons/tfi";
-// import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-// import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import Home from "../pages/Home/Home";
 
-import { blueGrey } from "@mui/material/colors";
+import ColorRule from "../components/ProUI/ColorRule";
 
 
-import UserAccountMenu from "../../components/UserAccountMenu/UserAccountMenu";
-import FooterCopyRight from "../../components/FooterCopyRight/FooterCopyRight";
-import MenuList from "../../components/MenuList/MenuList";
 
-import { Outlet, NavLink, ScrollRestoration } from "react-router-dom";
+const drawerWidth = 240;
 
-import { useCommonDataStore } from "../../stores/commonDataStore";
-import { useAuthContext } from "../../contexts/AuthContext";
-
-const drawerWidth = 280;
-
-const openedMixin = (theme: Theme): CSSObject => ({
-  width: drawerWidth,
-  transition: theme.transitions.create("width", {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.enteringScreen,
-  }),
-  overflowX: "hidden",
-});
-
-const closedMixin = (theme: Theme): CSSObject => ({
-  transition: theme.transitions.create("width", {
+const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
+  open?: boolean;
+}>(({ theme }) => ({
+  flexGrow: 1,
+  padding: theme.spacing(3),
+  transition: theme.transitions.create('margin', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  overflowX: "hidden",
-  width: `calc(${theme.spacing(7)} + 1px)`,
-  [theme.breakpoints.up("sm")]: {
-    width: `calc(${theme.spacing(8)} + 1px)`,
-  },
-});
-
-const DrawerHeader = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "flex-end",
-  padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
+  marginLeft: `-${drawerWidth}px`,
+  variants: [
+    {
+      props: ({ open }) => open,
+      style: {
+        transition: theme.transitions.create('margin', {
+          easing: theme.transitions.easing.easeOut,
+          duration: theme.transitions.duration.enteringScreen,
+        }),
+        marginLeft: 0,
+      },
+    },
+  ],
 }));
 
 interface AppBarProps extends MuiAppBarProps {
@@ -64,57 +56,39 @@ interface AppBarProps extends MuiAppBarProps {
 }
 
 const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== "open",
-})<AppBarProps>(({ theme, open }) => ({
-  zIndex: theme.zIndex.drawer + 1,
-  transition: theme.transitions.create(["width", "margin"], {
+  shouldForwardProp: (prop) => prop !== 'open',
+})<AppBarProps>(({ theme }) => ({
+  transition: theme.transitions.create(['margin', 'width'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  ...(open && {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
+  variants: [
+    {
+      props: ({ open }) => open,
+      style: {
+        width: `calc(100% - ${drawerWidth}px)`,
+        marginLeft: `${drawerWidth}px`,
+        transition: theme.transitions.create(['margin', 'width'], {
+          easing: theme.transitions.easing.easeOut,
+          duration: theme.transitions.duration.enteringScreen,
+        }),
+      },
+    },
+  ],
 }));
 
-const Drawer = styled(MuiDrawer, {
-  shouldForwardProp: (prop) => prop !== "open",
-})<{
-  open?: boolean;
-}>(({ theme, open }) => ({
-  width: drawerWidth,
-  flexShrink: 0,
-  whiteSpace: "nowrap",
-  boxSizing: "border-box",
-  ...(open && {
-    ...openedMixin(theme),
-    "& .MuiDrawer-paper": openedMixin(theme),
-  }),
-  ...(!open && {
-    ...closedMixin(theme),
-    "& .MuiDrawer-paper": closedMixin(theme),
-  }),
+const DrawerHeader = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+  justifyContent: 'flex-end',
 }));
 
-export default function DashboardLayout() {
-  const { initializeCommonData } = useCommonDataStore();
-  const { isAuthenticated, menu } = useAuthContext();
-
-  useEffect(() => {
-    // console.log("isAuthenticated:", isAuthenticated);
-    if (isAuthenticated) {
-      initializeCommonData(); // fetches shared data only once after login
-    }
-  }, [isAuthenticated]);
-
+export default function PersistentDrawerLeft() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-
-  const menuData = menu || [];
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -125,141 +99,91 @@ export default function DashboardLayout() {
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar
-        role="banner"
-        position="fixed"
-        open={open}
-        sx={{
-          backgroundColor: "rgba(255, 255, 255)", // White
-          boxShadow: "rgba(50, 50, 93, 0.25) 0px 20px 20px -20px",
-          color: blueGrey[800],
-        }}
-      >
-        <Toolbar>
+      <AppBar position="fixed" open={open}>
+        <Toolbar sx={{ backgroundColor: "#f9f9f9", color: "#999" }}>
           <IconButton
             color="inherit"
-            aria-label="Open navigation menu"
+            aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            sx={{
-              marginRight: 5,
-              display: open ? "none" : "inline-flex",
-            }}
+            sx={[
+              {
+                mr: 2,
+              },
+              open && { display: 'none' },
+            ]}
           >
             <MenuIcon />
           </IconButton>
-          <Box sx={{ flex: 1, display: "flex", alignItems: "center" }}>
-            <NavLink to="/dashboard">
-             Logo
-            </NavLink>
-          </Box>
-          <Box>
-            <UserAccountMenu />
-          </Box>
+          <Typography variant="h6" noWrap component="div">
+            Persistent drawer
+          </Typography>
         </Toolbar>
       </AppBar>
       <Drawer
-        role="navigation"
-        variant="permanent"
-        open={open}
         sx={{
-          "& .MuiDrawer-paper": {
-            backgroundColor: "#333F48", // Background color
-            color: "#f9f9f9 !important", // Text color
+          width: drawerWidth,
+          flexShrink: 0,
+          '& .MuiDrawer-paper': {
+            width: drawerWidth,
+            boxSizing: 'border-box',
           },
         }}
+        variant="persistent"
+        anchor="left"
+        open={open}
       >
         <DrawerHeader>
-          <Stack flexDirection="row">
-            {/* <HaleonFullLogoWhite width="200" height="auto" /> */}
-            <IconButton
-              aria-label="Close navigation menu"
-              onClick={handleDrawerClose}
-            >
-              {theme.direction === "rtl" ? (
-                // <ChevronRightIcon />
-                <TfiLayoutGrid3 />
-              ) : (
-                // <ChevronLeftIcon sx={{ color: "#f9f9f9" }} />
-                <TfiLayoutGrid3 style={{ color: "#f9f9f9" }} />
-              )}
-            </IconButton>
-          </Stack>
+          <IconButton aria-label="close drawer" onClick={handleDrawerClose}>
+            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+          </IconButton>
         </DrawerHeader>
         <Divider />
-        <Box
-          sx={{
-            overflowY: "auto",
-            overflowX: "hidden", // prevent horizontal scrollbar
-            // height: "100vh",
-            height: "calc(100vh - 64px)", // Assuming AppBar height is 64px
-            // padding: "16px",
-            scrollbarWidth: "thin", // For Firefox
-            scrollbarColor: "#4e6374 transparent", // For Firefox
-            "&::-webkit-scrollbar": {
-              width: "8px",
-            },
-            "&::-webkit-scrollbar-track": {
-              background: "transparent",
-            },
-            "&::-webkit-scrollbar-thumb": {
-              background: "#4e6374",
-              transition: "background 2s ease",
-              borderRadius: "4px",
-            },
-            "&::-webkit-scrollbar-thumb:hover": {
-              background: "#5f798f",
-            },
-          }}
-          className="custom-scrollbar"
-        >
-          <List sx={{ paddingTop: 0, marginTop: 0 }}>
-            <MenuList menuData={menuData} open={open} />
-          </List>
-        </Box>
-        {/* <Divider /> */}
+        <List>
+          {['Dashboards', 'Send email', 'UI Guidlines'].map((text, index) => (
+            <ListItem key={text} disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+        <Divider />
+        <List>
+          {['All mail', 'Trash', 'Spam'].map((text, index) => (
+            <ListItem key={text} disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
       </Drawer>
-      <Box
-        component="main"
-        role="main"
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          minHeight: "100vh",
-          position: "relative",
-          flex: 1,
-          overflowX: "hidden",
-          width: "100%",
-        }}
-      >
-        <Box
-          component="section"
-          sx={{
-            position: "relative",
-            flex: 1,
-            p: 2,
-            boxSizing: "border-box",
-            maxWidth: "100%",
-          }}
-        >
-          <ScrollRestoration />
-          <DrawerHeader />
-          <Outlet />
-        </Box>
+      <Main open={open}>
+        <DrawerHeader />
 
-        <Box
-          sx={{
-            mt: "auto",
-            bgcolor: "#ffffff",
-            width: "100%",
-            padding: "0.8rem 1.5rem",
-          }}
-        >
-          <FooterCopyRight />
-        </Box>
-      </Box>
+
+        <Home />
+        <ul>
+          <li>ClimateScope</li>
+          <li>WorkforceHub</li>
+          <li>FinanceLens</li>
+          <li>CommercePulse</li>
+          <li>HealthMetrics</li>
+          <li>GlobalRisk Monitor</li>
+        </ul>
+
+        <ColorRule />
+
+      </Main>
     </Box>
   );
 }
