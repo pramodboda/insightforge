@@ -37,6 +37,30 @@ const drawerWidth = 240;
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
+const menuData = [
+  {
+    menuItemIcon: "",
+    menuItemName: "Dashboard",
+    subMenu: [
+      { itemIcon: "", subItemName: "ClimateScope" },
+      { itemIcon: "", subItemName: "WorkforceHub" },
+      { itemIcon: "", subItemName: "FinanceLens" },
+      { itemIcon: "", subItemName: "CommercePulse" },
+      { itemIcon: "", subItemName: "HealthMetrics" },
+      { itemIcon: "", subItemName: "GlobalRisk Monitor" }]
+  },
+  {
+    menuItemIcon: "",
+    menuItemName: "UI Guidelines",
+    subMenu: [
+      { itemIcon: "", subItemName: "Typography" },
+      { itemIcon: "", subItemName: "Binto Grid" },
+      { itemIcon: "", subItemName: "Color Rule" },
+      { itemIcon: "", subItemName: "Grid" },
+      { itemIcon: "", subItemName: "Buttons" },]
+  },
+]
+
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
   open?: boolean;
 }>(({ theme }) => ({
